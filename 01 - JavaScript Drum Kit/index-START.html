@@ -59,6 +59,30 @@
 
 <script>
 
+  function keySelect(e){
+    key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+    return key
+  }
+
+  function playSound(e){
+    audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    if (!audio) return;
+    key = keySelect(e);
+    key.classList.add("playing");
+    audio.currentTime = 0;
+    audio.play();
+  }
+
+  function removeClass(e){
+    key = keySelect(e);
+    if (!key) return
+    key.classList.remove("playing");
+  }
+
+  window.addEventListener('keydown',playSound)
+  window.addEventListener('keyup',removeClass)
+
+
 </script>
 
 
